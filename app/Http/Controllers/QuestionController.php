@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Model\Question;
 use Illuminate\Http\Request;
 use vendor\symfony;
+use App\Http\Resources\QuestionResource;
 class QuestionController extends Controller
 {
     /**
@@ -15,7 +16,7 @@ class QuestionController extends Controller
     public function index()
     {
         //
-        return Question::latest()->get();
+        return QuestionResource::collection(Question::latest()->get());
     }
 
 
@@ -29,6 +30,9 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         //
+        // auth()->user->question($request->all());
+        Question::create($request->all());
+        return response('Created', 201);
     }
 
     /**
@@ -40,7 +44,7 @@ class QuestionController extends Controller
     public function show(Question $question)
     {
         //
-        return $question;
+        return new QuestionResource($question);
     }
 
     /**
