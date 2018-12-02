@@ -6,6 +6,8 @@ use App\Model\Question;
 use Illuminate\Http\Request;
 use vendor\symfony;
 use App\Http\Resources\QuestionResource;
+use Symfony\Component\HttpFoundation\Response;
+
 class QuestionController extends Controller
 {
     /**
@@ -32,7 +34,7 @@ class QuestionController extends Controller
         //
         // auth()->user->question($request->all());
         Question::create($request->all());
-        return response('Created', 201);
+        return response('Created', Response::HTTP_CREATED);
     }
 
     /**
@@ -57,6 +59,8 @@ class QuestionController extends Controller
     public function update(Request $request, Question $question)
     {
         //
+        $question->update($request->all());
+        return response('updated',  Response::HTTP_ACCEPTED);
     }
 
     /**
@@ -69,6 +73,6 @@ class QuestionController extends Controller
     {
         //
         $question->delete();
-        return response('Deleted', 201);
+        return response('Deleted', Response::HTTP_NO_CONTENT);
     }
 }
