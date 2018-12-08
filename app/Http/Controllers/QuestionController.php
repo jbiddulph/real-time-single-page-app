@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Pub;
 use App\Model\Question;
 use Illuminate\Http\Request;
 use vendor\symfony;
 use App\Http\Resources\QuestionResource;
+// use App\Http\Resources\PubResource;
 use Symfony\Component\HttpFoundation\Response;
 
 class QuestionController extends Controller
@@ -15,10 +17,10 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Pub $pub)
     {
         //
-        return QuestionResource::collection(Question::latest()->get());
+        return QuestionResource::collection($pub->questions);
     }
 
 
@@ -29,12 +31,13 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Pub $pub, Request $request)
     {
         //
         // auth()->user->question($request->all());
-        Question::create($request->all());
-        return response('Created', Response::HTTP_CREATED);
+        $question = $pub->questions()->create($request->all());
+        //Question::create($request->all());
+        return response(['created' => new QuestionResource($question)], Response::HTTP_CREATED);
     }
 
     /**
@@ -43,7 +46,7 @@ class QuestionController extends Controller
      * @param  \App\Model\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function show(Question $question)
+    public function show(Pub $pub, Question $question)
     {
         //
         return new QuestionResource($question);
@@ -56,7 +59,7 @@ class QuestionController extends Controller
      * @param  \App\Model\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Question $question)
+    public function update(Pub $pub, Request $request, Question $question)
     {
         //
         $question->update($request->all());
@@ -69,7 +72,7 @@ class QuestionController extends Controller
      * @param  \App\Model\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Question $question)
+    public function destroy(Pub $pub, Question $question)
     {
         //
         $question->delete();
