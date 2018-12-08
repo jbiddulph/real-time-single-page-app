@@ -8,6 +8,16 @@ use App\Model\Pub;
 
 class LikePubController extends Controller
 {
+    /**
+     * Create a new AuthController instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('JWT');
+    }
+
     public function likePub(Pub $pub){
         $pub->likepub()->create([
             // 'user_id' => auth()->id();
