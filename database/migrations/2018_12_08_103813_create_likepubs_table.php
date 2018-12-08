@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddPubidToQuestionsTable extends Migration
+class CreateLikepubsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class AddPubidToQuestionsTable extends Migration
      */
     public function up()
     {
-        Schema::table('questions', function (Blueprint $table) {
-            //
-            $table->integer('pub_id')->unsigned();
-            $table->foreign('pub_id')->references('id')->on('pubs')->onDelete('cascade');
+        Schema::create('likepubs', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('pub_id');
+            $table->integer('user_id');
+            $table->timestamps();
         });
     }
 
@@ -27,8 +28,6 @@ class AddPubidToQuestionsTable extends Migration
      */
     public function down()
     {
-        Schema::table('questions', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('likepubs');
     }
 }

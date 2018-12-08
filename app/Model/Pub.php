@@ -28,6 +28,9 @@ class Pub extends Model
     public function user() {
         return $this->belongsTo(User::class);
     }
+    public function likepub() {
+        return $this->hasMany(LikePub::class);
+    }
     // // Replies
     // public function replies() {
     //     return $this->hasMany(Reply::class);
