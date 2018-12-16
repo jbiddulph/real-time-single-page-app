@@ -27,7 +27,7 @@ class PubController extends Controller {
     public function index()
     {
         //
-        return PubResource::collection(Pub::latest()->get());
+        return PubResource::collection(Pub::latest()->paginate(50));
     }
 
     /**

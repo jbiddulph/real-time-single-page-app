@@ -42,6 +42,6 @@ class Pub extends Model
     // }
 
     public function getPathAttribute() {
-        return asset("api/pub/$this->slug");
+        return "api/pub/$this->slug";
     }
 }

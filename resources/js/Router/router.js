@@ -6,14 +6,22 @@ Vue.use(VueRouter)
 import Login from '../components/login/Login'
 import Logout from '../components/login/Logout'
 import Signup from '../components/login/signup'
-import Forum from '../components/forum/forum'
+import Forum from '../components/pubs/forum'
+import Read from '../components/pubs/read'
+import Create from '../components/pubs/create'
+import Pubs from '../components/pubs/pubs'
+import Details from '../components/pubs/details'
 
 
 const routes = [
     { path: '/login', component: Login },
     { path: '/logout', component: Logout },
     { path: '/signup', component: Signup },
-    { path: '/forum', component: Forum, name: 'forum' },
+    { path: '/pubs', component: Pubs, name: 'pubs' },
+    { path: '/pub/:id', component: Details, name: 'details' },
+    { path: '/pub/:id/forum', component: Forum, name: 'forum' },
+    { path: '/pub/:id/forum/ask', component: Create },
+    { path: '/pub/:id/question/:slug', component: Read, name: 'read' },
   ]
 
 const router = new VueRouter({
