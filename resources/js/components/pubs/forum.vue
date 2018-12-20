@@ -8,16 +8,19 @@
                 :question="question"></question>
                 <create></create>
             </v-flex>
-            sidebar
+            <v-flex xs4>
+                <app-sidebar></app-sidebar>
+            </v-flex>
         </v-layout>
     </v-container>
 </template>
 
 <script>
+import AppSidebar from './AppSidebar'
 import create from './create'
 import question from './question'
 export default {
-    components:{question,create},
+    components:{question,create,AppSidebar},
     data() {
         return {
             questions:{}

@@ -19,8 +19,10 @@ class Question extends Model
         return 'slug';
     }
 
-    protected $fillable = ['title','slug','body','category_id','user_id'];
+    protected $fillable = ['title','slug','body','category_id','user_id','pub_id'];
     //protected $guarded = [];
+
+    protected $with = ['replies'];
 
     // Pub
     public function pub() {
@@ -36,7 +38,7 @@ class Question extends Model
     }
     // Replies
     public function replies() {
-        return $this->hasMany(Reply::class);
+        return $this->hasMany(Reply::class)->latest();
     }
     // Category
     public function category() {

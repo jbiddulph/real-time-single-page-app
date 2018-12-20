@@ -7,6 +7,8 @@
             type="text"
             required
             ></v-text-field>
+
+            
             
             <v-autocomplete
             :items="categories"

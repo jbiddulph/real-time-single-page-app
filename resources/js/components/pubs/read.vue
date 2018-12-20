@@ -10,14 +10,21 @@
         :data = question
         ></show-question>
         
+        <v-container>
+            <replies :question="question"></replies>
+            <new-reply :questionSlug="question.slug"></new-reply>
+        </v-container>
+        
     </div>
 </template>
 
 <script>
 import EditQuestion from './EditQuestion'
 import ShowQuestion from './ShowQuestion'
+import replies from '../reply/replies'
+import NewReply from '../reply/newReply'
 export default {
-    components:{EditQuestion,ShowQuestion},
+    components:{EditQuestion,ShowQuestion,replies,NewReply},
     data() {
         return {
             question:null,
