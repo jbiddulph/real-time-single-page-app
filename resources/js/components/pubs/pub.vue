@@ -10,6 +10,8 @@
                 </h3>
                 
             <div>{{pub.address}}</div>
+            <v-seperator></v-seperator>
+            <like-pub :content="pub"></like-pub>
             </div>
         </v-card-title>
 
@@ -22,8 +24,13 @@
 </template>
 
 <script>
+import LikePub from '../likes/LikePub'
+
 export default {
-    
+    props:['data'],
+    components:{
+        LikePub
+    },
     props:['pub']
 }
 </script>

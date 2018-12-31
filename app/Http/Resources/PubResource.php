@@ -26,6 +26,8 @@ class PubResource extends JsonResource
             'telephone' => $this->rsTel,
             'latitude' => $this->rsLat,
             'longitude' => $this->rsLong,
+            'publike_count' => $this->likepub->count(),
+            'liked' => !! $this->likepub->where('user_id', auth()->id())->count(),
             'created_at' => $this->created_at->diffForHumans()
         ];
     }

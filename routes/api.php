@@ -10,6 +10,7 @@ Route::delete('/like/{reply}', 'LikeController@unLikeIt');
 Route::post('/pub/like/{pub}', 'LikePubController@likePub');
 Route::delete('/pub/like/{pub}', 'LikePubController@unLikePub');
 
+Route::post('notifications', 'NotificationController@index');
 Route::group([
 
     'middleware' => 'api',

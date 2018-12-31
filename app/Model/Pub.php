@@ -3,7 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\User;
 
 class Pub extends Model
 {
@@ -29,7 +29,7 @@ class Pub extends Model
         return $this->belongsTo(User::class);
     }
     public function likepub() {
-        return $this->hasMany(LikePub::class);
+        return $this->hasMany(Likepub::class);
     }
     // // Replies
     // public function replies() {

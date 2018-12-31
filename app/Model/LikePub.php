@@ -4,7 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class LikePub extends Model
+class Likepub extends Model
 {
     protected $guarded = [];
 }
